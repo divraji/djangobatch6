@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Study Space</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Study Space</h2>
+
+  <ul class="nav nav-tabs">
+    <li><a data-toggle="tab" href="#menu1">Study Hall</a></li>
+    <li><a data-toggle="tab" href="#menu2">Enquiry</a></li>
+    <li><a data-toggle="tab" href="#menu3">Expenses</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="menu1" class="tab-pane fade">
+      <h3>Study Hall</h3>
+      <p>This page shows Study Hall related information</p>
+      <!--{% load static %}
+      <img src="{% static "app1/sh2.jpg" %}" alt="My image"/>
+      <img src="{% static "app1/sh2.jpeg" %}" alt="New img" />-->
+      <p>{{data}}</p>
+    </div>
+    <div id="menu2" class="tab-pane fade">
+      <h3>Enquiry</h3>
+      <p>This page shows Enquiry related information>
+      <p>{{enqdata}}</p>
+    </div>
+    <div id="menu3" class="tab-pane fade">
+      <h3>Expenses</h3>
+      <p>This page shows Expensed related information.</p>
+      <p>{{expdata}}</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
