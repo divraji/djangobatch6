@@ -16,14 +16,8 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from app1.views import viewindex
-from app1.views import viewstudyhalls
-from app1.views import viewenquiry
-from app1.views import viewexpenses
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^index/', viewindex),
-    url(r'^studyhalls/', viewstudyhalls),
-    url(r'^enquiry/', viewenquiry),
-    url(r'^expenses/', viewexpenses),
 ]

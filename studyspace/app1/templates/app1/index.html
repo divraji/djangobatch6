@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Study Space</title>
+  <title>StudySpace</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+  table{
+    background-color: pink
+    }
+  </style>
 </head>
 <body>
 
@@ -22,21 +27,33 @@
   <div class="tab-content">
     <div id="menu1" class="tab-pane fade">
       <h3>Study Hall</h3>
-      <p>This page shows Study Hall related information</p>
-      <!--{% load static %}
-      <img src="{% static "app1/sh2.jpg" %}" alt="My image"/>
-      <img src="{% static "app1/sh2.jpeg" %}" alt="New img" />-->
-      <p>{{data}}</p>
+      <p>Study Hall Information Details.</p><br>
+      <table border=2>
+        <tr><th> Hall Name </th><th> Located At </th> </tr>
+      {% for hall in datahalls%}
+        <tr><td>{{hall.name}}</td><td>{{hall.area}}</td></tr>
+      {% endfor %}
+    </table>
     </div>
     <div id="menu2" class="tab-pane fade">
       <h3>Enquiry</h3>
-      <p>This page shows Enquiry related information>
-      <p>{{enqdata}}</p>
+      <p>Enquiry Details.</p><br>
+      <table border=2>
+        <tr><th> Enquiry Name </th><th> Course </th><th> StudentDetails </th> </tr>
+      {% for enq in dataenqs %}
+        <tr><td>{{enq.name}}</td><td>{{enq.course}}</td><td>{{enq.student}}</td></tr>
+      {% endfor %}
+    </table>
     </div>
     <div id="menu3" class="tab-pane fade">
       <h3>Expenses</h3>
-      <p>This page shows Expensed related information.</p>
-      <p>{{expdata}}</p>
+      <p>Expenses Details.</p><br>
+      <table border=2>
+        <tr><th>StudyHall</th><th> Expense Date</th><th> Expense Name </th><th> Description </th><th>Amount</th></tr>
+      {% for exp in dataexps%}
+         <tr><td>{{exp.studyhall}}</td><td>{{exp.date}}</td><td>{{exp.name}}</td><td>{{exp.desc}}</td><td>{{exp.value}}</td></tr>
+      {% endfor %}
+    </table>
     </div>
   </div>
 </div>
