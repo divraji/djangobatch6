@@ -28,17 +28,33 @@
     <div id="menu1" class="tab-pane fade">
       <h3>Study Hall</h3>
       <p>Study Hall Information Details.</p><br>
-      <table border=2>
+      <div class="row">
+        <form method="post">{% csrf_token %}
+          Hall Name:<input type="text" name="hall_name">
+          Hall Area:<input type="text" name="hall_area">
+          <input type="submit" value="Create Hall">
+        </form>
+      </div>
+      <div>
+      <table class = "table">
         <tr><th> Hall Name </th><th> Located At </th> </tr>
       {% for hall in datahalls%}
         <tr><td>{{hall.name}}</td><td>{{hall.area}}</td></tr>
       {% endfor %}
-    </table>
+      </table>
+     </div>
     </div>
     <div id="menu2" class="tab-pane fade">
       <h3>Enquiry</h3>
       <p>Enquiry Details.</p><br>
-      <table border=2>
+       <div class="row">
+        <form method="post">{% csrf_token %}
+          Enquiry Name:<input type="text" name="enq_name">
+          Course:<input type="text" name="course">
+          <input type="submit" value="Create Enquiry">
+        </form>
+      </div>
+      <table class="table">
         <tr><th> Enquiry Name </th><th> Course </th><th> StudentDetails </th> </tr>
       {% for enq in dataenqs %}
         <tr><td>{{enq.name}}</td><td>{{enq.course}}</td><td>{{enq.student}}</td></tr>
@@ -48,7 +64,7 @@
     <div id="menu3" class="tab-pane fade">
       <h3>Expenses</h3>
       <p>Expenses Details.</p><br>
-      <table border=2>
+      <table class="table">
         <tr><th>StudyHall</th><th> Expense Date</th><th> Expense Name </th><th> Description </th><th>Amount</th></tr>
       {% for exp in dataexps%}
          <tr><td>{{exp.studyhall}}</td><td>{{exp.date}}</td><td>{{exp.name}}</td><td>{{exp.desc}}</td><td>{{exp.value}}</td></tr>
