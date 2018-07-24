@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+   <title>Study Space</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Study Space</h2>
+  {% block menu %}
+  <ul class="nav nav-tabs">
+    <li><a href="/studyhalls/">Study Hall</a></li>
+    <li><a href="/enquiries/">Enquiry</a></li>
+    <li><a href="#menu3">Expenses</a></li>
+    <li><a href="/reports/">Reports</a></li>
+  </ul>
+  {% endblock %}
+  <h4 style="color:red">
+  {% block pageheader %}
+  {% endblock %}
+  </h4>
+  <div class="border border-success">
+  {% block content %}
+  <p> This is base content template </p>
+  {% endblock %}
+  </div>
+  
+  <footer>
+  <p>Posted by: Hege Refsnes</p>
+  <p>Contact information: <a href="mailto:someone@example.com">
+  someone@example.com</a>.</p>
+  </footer>
+  

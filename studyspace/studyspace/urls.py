@@ -15,9 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from app1.views import viewindex
+from app1.views import viewindex,viewstudyhalls,viewhallupdate,viewhalldelete,viewenquiries,viewreports
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^index/', viewindex),
+    url(r'^studyhalls/', viewstudyhalls),
+    url(r'^hall_update/([0-9]+)', viewhallupdate),
+    url(r'^hall_delete/([0-9]+)', viewhalldelete),
+    url(r'^enquiries/' , viewenquiries),
+    url(r'^reports/' , viewreports),
 ]

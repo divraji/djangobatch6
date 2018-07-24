@@ -1,0 +1,34 @@
+{% extends "app1/base.html" %}
+{% block pageheader %}
+STUDY HALLS
+{% endblock %}
+{% block content %}
+ 
+      <p>Study Hall Information Details.</p><br>
+      <div class="row">
+        <form method="post">{% csrf_token %}
+          Hall Name:<input type="text" name="hall_name">
+          Hall Area:<input type="text" name="hall_area">
+          <input type="submit" name="studyhall" value="Create Hall">
+        </form>
+      </div>
+      <div>
+      <table id="example" class="table table-striped table-bordered" style="width:100%">  
+        <thead>
+            <tr><th> Hall Name </th>
+                <th> Located At </th> 
+                <th> Update </th> 
+                <th> Delete </th> 
+            </tr>
+        </thead>
+        <tbody>
+            {% for hall in datahalls%}
+            <tr><td>{{hall.name}}</td>
+                <td>{{hall.area}}</td>
+                <td><a href="/hall_update/{{hall.id}}/">Update</td>
+                <td><a href="/hall_delete/{{hall.id}}/">Delete</td>
+              </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+ {% endblock %}

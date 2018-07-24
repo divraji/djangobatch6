@@ -1,0 +1,111 @@
+
+  <div class="tab-content">
+    <div id="menu1" class="tab-pane fade">
+      <h3>Study Hall</h3>
+      <p>Study Hall Information Details.</p><br>
+      <div class="row">
+        <form method="post">{% csrf_token %}
+          Hall Name:<input type="text" name="hall_name">
+          Hall Area:<input type="text" name="hall_area">
+          <input type="submit" name="studyhall" value="Create Hall">
+        </form>
+      </div>
+      <div>
+      <table id="example" class="table table-striped table-bordered" style="width:100%">  
+        <thead>
+            <tr><th> Hall Name </th>
+                <th> Located At </th> 
+                <th> Update </th> 
+                <th> Delete </th> 
+            </tr>
+        </thead>
+        <tbody>
+            {% for hall in datahalls%}
+            <tr><td>{{hall.name}}</td>
+                <td>{{hall.area}}</td>
+                <td><a href="/hall_update/{{hall.id}}/">Update</td>
+                <td><a href="/hall_delete/{{hall.id}}/">Delete</td>
+              </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+      </div>
+    </div>
+    <div id="menu2" class="tab-pane fade">
+      <h3>Enquiry</h3>
+      <p>Enquiry Details.</p><br>
+      <div class="row">
+        <form method="post">{% csrf_token %}
+          Enquiry Name:<input type="text" name="enq_name">
+          Course Name:<select name="enq_course">
+            {% for course in datacourse %}
+            <option value="{{course.id}}">{{course.name}}</option>
+            {% endfor %}
+          </select>
+          Student:<select name="enq_student">
+            {% for student in datastudent %}
+            <option value="{{student.id}}">{{student.name}}</option>
+            {% endfor %}
+          </select>
+          <input type="submit" name="enquiry" value="Create Enquiry">
+        </form>
+      </div>
+      <div>
+      <table id="example" class="table table-striped table-bordered" style="width:100%">  
+        <thead>
+            <tr><th> Enquiry Name </th>
+                <th> Course </th><th> StudentDetails </th> </tr>
+        </thead>
+        <tbody>
+            {% for enq in dataenqs %}
+             <tr><td>{{enq.name}}</td>
+                 <td>{{enq.course}}</td>
+                 <td>{{enq.student}}</td></tr>
+            {% endfor %}
+        </tbody>
+      </table>
+      </div>
+    </div>
+    <div id="menu3" class="tab-pane fade">
+      <h3>Expenses</h3>
+      <p>Expenses Details.</p><br>
+      <div class="row">
+      <form method="post">{% csrf_token %}
+          StudyHall:<select name="exp_studyhall">
+                  {% for hall in datahalls%}
+                  <option value="{{ hall.id }}">{{hall.name}}</option>
+                  {% endfor %}}
+           </select>
+          Date:<input type="text" name="exp_date">
+          Name:<input type="text" name="exp_name">
+          Desc:<input type="text" name="exp_desc">
+          Value:<input type="text" name="exp_value">
+          <input type="submit" name="expense" value="CREATE EXPENSE">
+      </form>
+      </div>
+      <div>
+      <table id="example" class="table table-striped table-bordered" style="width:100%">  
+        <thead>
+            <tr><th>StudyHall</th>
+                <th> Expense Date</th>
+                <th> Expense Name </th>
+                <th> Description </th>
+                <th>Amount</th></tr>
+        </thead>
+        <tbody>
+          {% for exp in dataexps%}
+           <tr><td>{{exp.studyhall}}</td>
+               <td>{{exp.date}}</td>
+               <td>{{exp.name}}</td>
+               <td>{{exp.desc}}</td>
+               <td>{{exp.value}}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

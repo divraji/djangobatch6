@@ -1,0 +1,38 @@
+{% extends "app1/base.html" %}
+{% block pageheader %}
+ENQUIRY
+{% endblock %}
+{% block content %}
+
+      <p>Enquiry Details.</p><br>
+      <div class="row">
+        <form method="post">{% csrf_token %}
+          Enquiry Name:<input type="text" name="enq_name">
+          Course Name:<select name="enq_course">
+            {% for course in datacourse %}
+            <option value="{{course.id}}">{{course.name}}</option>
+            {% endfor %}
+          </select>
+          Student:<select name="enq_student">
+            {% for student in datastudent %}
+            <option value="{{student.id}}">{{student.name}}</option>
+            {% endfor %}
+          </select>
+          <input type="submit" name="enquiry" value="Create Enquiry">
+        </form>
+      </div>
+      <div>
+      <table id="example" class="table table-striped table-bordered" style="width:100%">  
+        <thead>
+            <tr><th> Enquiry Name </th>
+                <th> Course </th><th> StudentDetails </th> </tr>
+        </thead>
+        <tbody>
+            {% for enq in dataenqs %}
+             <tr><td>{{enq.name}}</td>
+                 <td>{{enq.course}}</td>
+                 <td>{{enq.student}}</td></tr>
+            {% endfor %}
+        </tbody>
+      </table>
+   {% endblock %}

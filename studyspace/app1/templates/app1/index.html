@@ -1,135 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Study Space</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-  <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-  <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
-  <script type="text/javascript">
-  $(document).ready(function() {
-    $('#example').DataTable();
-} );
-</script>
-</head>
-<body>
+{% extends 'app1/base.html'%}
+{% block menu%}
+{% endblock %}
+{% block pageheader%}
+{% endblock %}
+{% block content%}
+<div class="row">
+  <div class="col-sm-6">
+    <p>LOGIN SCREEN</p>
+    <form class="form-horizontal" method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="email">USername:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="email" placeholder="User name" name="username">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="pwd">Password:</label>
+        <div class="col-sm-10">
+          <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <div class="checkbox">
+            <label><input type="checkbox"> Remember me</label>
+            <a href="/forgotpassword/">Forgot password</a>
+          </div>
 
-<div class="container">
-  <h2>Study Space</h2>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <input type="submit" name= "login" class="btn btn-default" value="LOGIN">
+        </div>
+      </div>
+    </form> 
 
-  <ul class="nav nav-tabs">
-    <li><a data-toggle="tab" href="#menu1">Study Hall</a></li>
-    <li><a data-toggle="tab" href="#menu2">Enquiry</a></li>
-    <li><a data-toggle="tab" href="#menu3">Expenses</a></li>
-  </ul>
-
-  <div class="tab-content">
-    <div id="menu1" class="tab-pane fade">
-      <h3>Study Hall</h3>
-      <p>Study Hall Information Details.</p><br>
-      <div class="row">
-        <form method="post">{% csrf_token %}
-          Hall Name:<input type="text" name="hall_name">
-          Hall Area:<input type="text" name="hall_area">
-          <input type="submit" name="studyhall" value="Create Hall">
-        </form>
-      </div>
-      <div>
-      <table id="example" class="table table-striped table-bordered" style="width:100%">  
-        <thead>
-            <tr><th> Hall Name </th>
-                <th> Located At </th> </tr>
-        </thead>
-        <tbody>
-            {% for hall in datahalls%}
-            <tr><td>{{hall.name}}</td>
-                <td>{{hall.area}}</td></tr>
-            {% endfor %}
-        </tbody>
-      </table>
-      </div>
-    </div>
-    <div id="menu2" class="tab-pane fade">
-      <h3>Enquiry</h3>
-      <p>Enquiry Details.</p><br>
-      <div class="row">
-        <form method="post">{% csrf_token %}
-          Enquiry Name:<input type="text" name="enq_name">
-          Course Name:<select name="enq_course">
-            {% for course in datacourse %}
-            <option value="{{course.id}}">{{course.name}}</option>
-            {% endfor %}
-          </select>
-          Student:<select name="enq_student">
-            {% for student in datastudent %}
-            <option value="{{student.id}}">{{student.name}}</option>
-            {% endfor %}
-          </select>
-          <input type="submit" name="enquiry" value="Create Enquiry">
-        </form>
-      </div>
-      <div>
-      <table id="example" class="table table-striped table-bordered" style="width:100%">  
-        <thead>
-            <tr><th> Enquiry Name </th>
-                <th> Course </th><th> StudentDetails </th> </tr>
-        </thead>
-        <tbody>
-            {% for enq in dataenqs %}
-             <tr><td>{{enq.name}}</td>
-                 <td>{{enq.course}}</td>
-                 <td>{{enq.student}}</td></tr>
-            {% endfor %}
-        </tbody>
-      </table>
-      </div>
-    </div>
-    <div id="menu3" class="tab-pane fade">
-      <h3>Expenses</h3>
-      <p>Expenses Details.</p><br>
-      <div class="row">
-      <form method="post">{% csrf_token %}
-          StudyHall:<select name="exp_studyhall">
-                  {% for hall in datahalls%}
-                  <option value="{{ hall.id }}">{{hall.name}}</option>
-                  {% endfor %}}
-           </select>
-          Date:<input type="text" name="exp_date">
-          Name:<input type="text" name="exp_name">
-          Desc:<input type="text" name="exp_desc">
-          Value:<input type="text" name="exp_value">
-          <input type="submit" name="expense" value="CREATE EXPENSE">
-      </form>
-      </div>
-      <div>
-      <table id="example" class="table table-striped table-bordered" style="width:100%">  
-        <thead>
-            <tr><th>StudyHall</th>
-                <th> Expense Date</th>
-                <th> Expense Name </th>
-                <th> Description </th>
-                <th>Amount</th></tr>
-        </thead>
-        <tbody>
-          {% for exp in dataexps%}
-           <tr><td>{{exp.studyhall}}</td>
-               <td>{{exp.date}}</td>
-               <td>{{exp.name}}</td>
-               <td>{{exp.desc}}</td>
-               <td>{{exp.value}}</td></tr>
-          {% endfor %}
-        </tbody>
-      </table>
-      </div>
-    </div>
   </div>
+  <div class="col-sm-6">
+    <p class="success">{{ msg }}</p>
+    <p>REgistration screen</p>
+    <form class="form-horizontal" method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="email">Email:</label>
+        <div class="col-sm-10">
+          <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="email">Username:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" placeholder="Enter email" name="username">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="pwd">Password:</label>
+        <div class="col-sm-10">
+          <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <input name="reg" type="submit" class="btn btn-default" value="REGISTER">
+        </div>
+      </div>
+    </form> 
+  </div>
+  
 </div>
-
-</body>
-</html>
+ 
+{% endblock %}
